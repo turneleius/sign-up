@@ -1,3 +1,5 @@
+'use server'
+
 export const createAccount = (event: any) => {
     event.preventDefault();
     const firstName = event.target.firstName.value;
