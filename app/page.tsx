@@ -1,23 +1,8 @@
 'use client'
 
+import { createAccount } from "./actions/formActions";
+
 const SignUpPage = () => {
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    const firstName = event.target.firstName.value;
-    const lastName = event.target.lastName.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    const passwordConfirmation = event.target.passwordConfirmation.value;
-    const country = event.target.country.value;
-    console.log('🚀 ~ handleSubmit ~ firstName:', {
-      firstName,
-      lastName,
-      email,
-      password,
-      passwordConfirmation,
-      country,
-    })
-  }
 
   return (
     <>
@@ -25,7 +10,7 @@ const SignUpPage = () => {
         Create An Account
       </div>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={createAccount}>
           <input className="border-2 border-gray-500" name="firstName" type="text" placeholder="Enter your First Name" />
           <input className="border-2 border-gray-500" name="lastName" type="text" placeholder="Enter your Last Name" />
           <input className="border-2 border-gray-500" name="email" type="email" placeholder="Enter your email address" />
