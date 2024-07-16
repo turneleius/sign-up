@@ -1,13 +1,21 @@
 'use server'
 
-export const createAccount = (event: any) => {
-    event.preventDefault();
-    const firstName = event.target.firstName.value;
-    const lastName = event.target.lastName.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    const passwordConfirmation = event.target.passwordConfirmation.value;
-    const country = event.target.country.value;
+type User = {
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+    passwordConfirmation: String
+    country: String
+}
+
+export const createAccount = (user: User) => {
+    const firstName = user.firstName;
+    const lastName = user.lastName;
+    const email = user.email;
+    const password = user.password;
+    const passwordConfirmation = user.passwordConfirmation;
+    const country = user.country;
     console.log('🚀 ~ handleSubmit ~ firstName:', {
       firstName,
       lastName,

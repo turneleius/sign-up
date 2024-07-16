@@ -2,13 +2,26 @@
 import { createAccount } from "./actions/formActions";
 
 const CreateAccountForm = ({ formTitle }: any) => {
+
+    const handleSubmit = (event: any) => {
+        event.preventDefault();
+        const user = {
+            firstName: event.target.firstName.value,
+            lastName: event.target.lastName.value,
+            email: event.target.email.value,
+            password: event.target.password.value,
+            passwordConfirmation: event.target.passwordConfirmation.value,
+            country: event.target.country.value
+        }
+        createAccount(user);
+    }
     return (
         <>
             <div className="text-5xl">
                 {formTitle}
             </div>
             <div>
-                <form onSubmit={createAccount}>
+                <form onSubmit={handleSubmit}>
                     <input className="border-2 border-gray-500" name="firstName" type="text" placeholder="Enter your First Name" />
                     <input className="border-2 border-gray-500" name="lastName" type="text" placeholder="Enter your Last Name" />
                     <input className="border-2 border-gray-500" name="email" type="email" placeholder="Enter your email address" />
