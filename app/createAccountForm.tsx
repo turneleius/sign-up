@@ -38,7 +38,7 @@ const CreateAccountForm = ({ formTitle }: any) => {
                 </form>
             </div>
         </>
-    );
+    )
 }
 
 export default CreateAccountForm;
