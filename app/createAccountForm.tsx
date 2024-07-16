@@ -1,7 +1,14 @@
 'use client'
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { createAccount } from "./actions/formActions";
+import { useState } from "react";
 
 const CreateAccountForm = ({ formTitle }: any) => {
+    const [country, setCountry] = useState("");
+
+    const handleChange = (event: any) => {
+        setCountry(() => event.target.value);
+    }
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
@@ -15,6 +22,7 @@ const CreateAccountForm = ({ formTitle }: any) => {
         }
         createAccount(user);
     }
+
     return (
         <>
             <div className="text-5xl">
@@ -22,19 +30,41 @@ const CreateAccountForm = ({ formTitle }: any) => {
             </div>
             <div>
                 <form onSubmit={handleSubmit}>
-                    <input className="border-2 border-gray-500" name="firstName" type="text" placeholder="Enter your First Name" />
-                    <input className="border-2 border-gray-500" name="lastName" type="text" placeholder="Enter your Last Name" />
-                    <input className="border-2 border-gray-500" name="email" type="email" placeholder="Enter your email address" />
-                    Country<select name="country" className="border-2 border-gray-500">
-                        <option value="TT">Trinidad and Tobago</option>
-                        <option value="JA">Jamaica</option>
-                        <option value="BD">Barbados</option>
-                    </select>
-                    <input className="border-2 border-gray-500" name="password" type="password" placeholder="Enter your password" />
-                    <input className="border-2 border-gray-500" name="passwordConfirmation" type="password" placeholder="Confirm your password" />
-                    <div>
-                        <button className="bg-lime-600 text-white" type="submit">Create Account</button>
-                    </div>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth name="firstName" label="First Name" variant="outlined" />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth name="lastName" label="Last Name" variant="outlined" />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth name="email" label="Email Address" type="email" variant="outlined" />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <FormControl fullWidth>
+                                <InputLabel>Country</InputLabel>
+                                <Select
+                                    value={country}
+                                    label="Country"
+                                    name="country"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={'TT'}>Trinidad and Tobago</MenuItem>
+                                    <MenuItem value={'JA'}>Jamaica</MenuItem>
+                                    <MenuItem value={'BD'}>Barbados</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth name="password" label="Password" variant="outlined" type="password" />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField fullWidth name="passwordConfirmation" label="Confirm Password" variant="outlined" type="password" />
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <Button variant="contained" type="submit">Create Account</Button>
+                        </Grid>
+                    </Grid>
                 </form>
             </div>
         </>
